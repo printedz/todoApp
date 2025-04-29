@@ -1,32 +1,28 @@
-//
-//  AppDelegate.m
-//  todo-list-3
-//
-//  Created by Alejandro Regidor Nova on 29/4/25.
-//
-
 #import "AppDelegate.h"
-
-@interface AppDelegate ()
-
-@property (strong) IBOutlet NSWindow *window;
-@end
+#import "TodoListViewController.h"
 
 @implementation AppDelegate
 
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    // Insert code here to initialize your application
+- (void)applicationDidFinishLaunching:(NSNotification *)notification {
+    // Create the main window
+    self.window = [[NSWindow alloc] initWithContentRect:NSMakeRect(0, 0, 800, 600)
+                                              styleMask:NSWindowStyleMaskTitled | NSWindowStyleMaskClosable | NSWindowStyleMaskMiniaturizable | NSWindowStyleMaskResizable
+                                                backing:NSBackingStoreBuffered
+                                                  defer:NO];
+    [self.window setTitle:@"Rich Text Todo App"];
+    [self.window setMinSize:NSMakeSize(400, 300)];
+    [self.window center];
+    
+    // Initialize the view controller
+    TodoListViewController *todoListVC = [[TodoListViewController alloc] init];
+    
+    // Set the content view and make the window visible
+    self.window.contentView = todoListVC.view;
+    [self.window makeKeyAndOrderFront:nil];
 }
 
-
-- (void)applicationWillTerminate:(NSNotification *)aNotification {
-    // Insert code here to tear down your application
-}
-
-
-- (BOOL)applicationSupportsSecureRestorableState:(NSApplication *)app {
+- (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender {
     return YES;
 }
-
 
 @end

@@ -295,7 +295,7 @@
 - (void)toggleUnderline:(id)sender {
     [self applyTextAttribute:NSUnderlineStyleAttributeName withAction:^(NSRange selectedRange, NSMutableAttributedString *textStorage) {
         // Check if the selected range already has underline
-        BOOL hasUnderline = NO;
+        __block BOOL hasUnderline = NO;
         [textStorage enumerateAttribute:NSUnderlineStyleAttributeName inRange:selectedRange options:0 usingBlock:^(id value, NSRange range, BOOL *stop) {
             if (value && [value integerValue] != NSUnderlineStyleNone) {
                 hasUnderline = YES;
@@ -315,7 +315,7 @@
 - (void)toggleStrikethrough:(id)sender {
     [self applyTextAttribute:NSStrikethroughStyleAttributeName withAction:^(NSRange selectedRange, NSMutableAttributedString *textStorage) {
         // Check if the selected range already has strikethrough
-        BOOL hasStrikethrough = NO;
+        __block BOOL hasStrikethrough = NO;
         [textStorage enumerateAttribute:NSStrikethroughStyleAttributeName inRange:selectedRange options:0 usingBlock:^(id value, NSRange range, BOOL *stop) {
             if (value && [value integerValue] != NSUnderlineStyleNone) {
                 hasStrikethrough = YES;
